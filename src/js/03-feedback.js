@@ -27,17 +27,15 @@ function onFormSubmit(event){
 
 };
 
-function onInput(event){
-    formdata[event.target.name] = event.target.value ;
-    const formDataStrf = JSON.stringify(formdata);
-    localStorage.setItem(STORAGE_KEY, formDataStrf);
-
+function onInput(event) {
+    const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    savedData[event.target.name] = event.target.value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
 };
 
 function loadDataFromLocalStorage() {
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-    
     if (savedData && savedData.email) {
         refs.inputEmail.value = savedData.email;
     }
