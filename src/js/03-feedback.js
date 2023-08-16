@@ -37,8 +37,12 @@ function onInput(event){
 function loadDataFromLocalStorage() {
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-    if (savedData) {
+    
+    if (savedData && savedData.email) {
         refs.inputEmail.value = savedData.email;
+    }
+
+    if (savedData && savedData.message) {
         refs.textarea.value = savedData.message;
     }
 };
