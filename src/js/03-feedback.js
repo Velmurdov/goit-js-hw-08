@@ -12,6 +12,9 @@ const formdata = {};
 
 refs.formEl.addEventListener('submit', onFormSubmit);
 refs.formEl.addEventListener('input', throttle(onInput, 500));
+refs.inputEmail.addEventListener('blur', onSave); 
+refs.textarea.addEventListener('blur', onSave);
+
 
 loadDataFromLocalStorage();
 
@@ -20,10 +23,8 @@ function onFormSubmit(event){
     event.currentTarget.reset();
 
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    
-    
-    console.log('email:', savedData.email);
-    console.log('message:', savedData.message);
+
+    console.log(savedData);
 
     localStorage.removeItem(STORAGE_KEY);
 
@@ -36,15 +37,11 @@ function onInput(event){
 
 };
 
-function loadDataFromLocalStorage(){
+function loadDataFromLocalStorage() {
     const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-    if (savedData && savedData.email) {
+    if (savedData) {
         refs.inputEmail.value = savedData.email;
-    }
-
-    if (savedData && savedData.message) {
         refs.textarea.value = savedData.message;
     }
-
 };
