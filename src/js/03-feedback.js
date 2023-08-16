@@ -12,9 +12,6 @@ const formdata = {};
 
 refs.formEl.addEventListener('submit', onFormSubmit);
 refs.formEl.addEventListener('input', throttle(onInput, 500));
-refs.inputEmail.addEventListener('blur', onSave); 
-refs.textarea.addEventListener('blur', onSave);
-
 
 loadDataFromLocalStorage();
 
